@@ -13,10 +13,10 @@ class Display:
     def overwrite_image(self, image) -> None:
         self.display_image = [[ele + " " * self.spacing for ele in row] for row in image]
 
-    def update_tile_at(self, pos, symbol) -> None:
+    def update_tile_at(self, pos: tuple, symbol:str) -> None:
         x,y = pos
         image = self.display_image.copy()
-        image[y][x] = str(symbol) + " " * self.spacing
+        image[y][x] = symbol + " " * self.spacing
 
     def display(self) -> None:
         console = self.console
@@ -24,4 +24,7 @@ class Display:
         for row in self.display_image:
             console.print("".join(row), justify="center")
             console.print("\n" * (self.spacing // 4), end="")
+
+    def clear(self) -> None:
+        self.console.clear()
 
